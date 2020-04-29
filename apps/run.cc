@@ -15,7 +15,7 @@ namespace myapp {
 
 
 const int kSamples = 8;
-const int kWidth = 500;
+const int kWidth = 750;
 const int kHeight = 500;
 
 void SetUp(App::Settings* settings) {

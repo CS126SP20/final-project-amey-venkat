@@ -20,18 +20,23 @@ const int tile_size = 50;
 
 using cinder::app::KeyEvent;
 
-MyApp::MyApp() { }
-
-void MyApp::setup() {
-  //cinder::gl::Texture2dRef background_ = cinder::gl::Texture2d::create(loadImage(loadAsset("cave_background.jpg")));
-  //cinder::Area area = cinder::Area(0, 0, getWindowWidth() * 4, getWindowHeight() * 4);
-  //cinder::gl::draw(background_, area);
-  cinder::gl::clear(cinder::Color(0.5, 0, 0.75));
+MyApp::MyApp() {
+  srand(time(NULL));
+  int random = rand() % 11;
+  engine_ = Engine(4, 0);
 }
 
-void MyApp::update() { }
+void MyApp::setup() {
+  board_image = cinder::gl::Texture2d::create(loadImage(loadAsset("cave_background.jpg")));
+}
+
+void MyApp::update() {
+
+}
 
 void MyApp::draw() {
+  cinder::gl::clear();
+  cinder::gl::draw(board_image, getWindowBounds());
   DrawBird();
 }
 
@@ -39,16 +44,22 @@ void MyApp::keyDown(KeyEvent event) {
   switch (event.getCode()) {
     case KeyEvent::KEY_SPACE:
     case KeyEvent::KEY_UP: {
-
+      if (engine_.GetBirdHeight() != 0) {
+        engine_.SetBirdHeight(engine_.GetBirdHeight() - 1);
+      }
+      break;
+    }
+    case KeyEvent::KEY_DOWN: {
+      if (engine_.GetBirdHeight() != 9) {
+        engine_.SetBirdHeight(engine_.GetBirdHeight() + 1);
+      }
       break;
     }
   }
 }
 
 void MyApp::DrawBird() const {
-  srand(time(NULL));
-  int random = rand() % 11;
-  const Location loc = Location(2, random);
+  const Location loc = Location(2, engine_.GetBirdHeight());
   cinder::gl::drawSolidRect(cinder::Rectf(tile_size * loc.Row(),
                                   tile_size * loc.Col(),
                                   tile_size * loc.Row() + tile_size,

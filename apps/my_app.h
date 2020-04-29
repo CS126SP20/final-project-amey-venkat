@@ -18,14 +18,20 @@
 namespace myapp {
 
 class MyApp : public cinder::app::App {
- private:
-  void DrawBird() const;
  public:
   MyApp();
   void setup() override;
   void update() override;
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
+
+ private:
+  void DrawBird() const;
+  cinder::gl::Texture2dRef board_image;
+
+ private:
+  Engine engine_ = Engine();
+
 };
 
 }  // namespace myapp
