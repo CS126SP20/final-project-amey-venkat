@@ -8,11 +8,14 @@
 #include "cinder/gl/Texture.h"
 #include <cinder/gl/gl.h>
 #include <Box2D/Box2D.h>
+#include <cinder/audio/voice.h>
 #include <time.h>
 #include <vector>
+#include <string>
 
 #include "flappybird/Bird.h"
 #include "flappybird/Engine.h"
+#include "flappybird/Pipe.h"
 #include "flappybird/Location.h"
 
 namespace myapp {
@@ -27,10 +30,16 @@ class MyApp : public cinder::app::App {
 
  private:
   void DrawBird() const;
+  void DrawPipe(Pipe pipe) const;
+  void DrawGameOver() const;
+  void PrintText(const std::string& text, const cinder::Color& color, const cinder::ivec2& size,
+                 const cinder::vec2& loc) const;
   cinder::gl::Texture2dRef board_image;
+  cinder::audio::VoiceRef noisePlayer;
 
  private:
-  Engine engine_ = Engine();
+  Engine *engine_ = new Engine();
+  int count = 0;
 
 };
 

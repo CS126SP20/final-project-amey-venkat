@@ -12,15 +12,15 @@ using cinder::app::RendererGl;
 
 namespace myapp {
 
-
-
 const int kSamples = 8;
-const int kWidth = 750;
+const int kWidth = 500;
 const int kHeight = 500;
 
 void SetUp(App::Settings* settings) {
   settings->setWindowSize(kWidth, kHeight);
   settings->setResizable(false);
+  //Slows the frame rate of the game
+  settings->setFrameRate(5);
   settings->setTitle("Flappy Bird");
   std::srand(std::time(0));
 }
