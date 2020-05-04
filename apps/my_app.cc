@@ -32,6 +32,7 @@ MyApp::MyApp() {
 
 void MyApp::setup() {
   board_image = cinder::gl::Texture2d::create(loadImage(loadAsset("cave_background.jpg")));
+  plane_image = cinder::gl::Texture2d::create(loadImage(loadAsset("jet.jpg")));
 }
 
 void MyApp::update() {
@@ -97,12 +98,16 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::DrawBird() const {
   //Keeps the bird always in column 2 (third row from the left)
-  cinder::gl::color(0, 0.75, 0);
+  cinder::gl::color(1, 1, 1);
   const Location loc = Location(2, engine_->GetBirdHeight());
-  cinder::gl::drawSolidRect(cinder::Rectf(tile_size * loc.Row(),
+  /*cinder::gl::drawSolidRect(cinder::Rectf(tile_size * loc.Row(),
                                   tile_size * loc.Col(),
                                   tile_size * loc.Row() + tile_size,
-                                  tile_size * loc.Col() + tile_size));
+                                  tile_size * loc.Col() + tile_size));*/
+  cinder::gl::draw(plane_image, cinder::Rectf(tile_size * loc.Row(),
+                                              tile_size * loc.Col(),
+                                              tile_size * loc.Row() + tile_size,
+                                              tile_size * loc.Col() + tile_size));
 }
 void MyApp::DrawPipe(Pipe pipe) const {
   //Draw first pipe

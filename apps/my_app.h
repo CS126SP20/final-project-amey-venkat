@@ -35,6 +35,7 @@ class MyApp : public cinder::app::App {
   void PrintText(const std::string& text, const cinder::Color& color, const cinder::ivec2& size,
                  const cinder::vec2& loc) const;
   cinder::gl::Texture2dRef board_image;
+  cinder::gl::Texture2dRef plane_image;
   cinder::audio::VoiceRef noisePlayer;
 
  private:
