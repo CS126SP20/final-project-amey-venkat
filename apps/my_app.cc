@@ -36,7 +36,7 @@ void MyApp::setup() {
 }
 
 void MyApp::update() {
-  if (engine_->GetBirdHeight() != 9) {
+  if (engine_->GetBirdHeight() != 9 && !engine_->game_over) {
     engine_->SetBirdHeight(engine_->GetBirdHeight() + 1);
   }
 
@@ -98,7 +98,7 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::DrawBird() const {
   //Keeps the bird always in column 2 (third row from the left)
-  cinder::gl::color(1, 1, 1);
+  cinder::gl::color(0.2, 1, 0.2);
   const Location loc = Location(2, engine_->GetBirdHeight());
   /*cinder::gl::drawSolidRect(cinder::Rectf(tile_size * loc.Row(),
                                   tile_size * loc.Col(),
