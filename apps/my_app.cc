@@ -32,40 +32,52 @@ MyApp::MyApp() {
 
 void MyApp::setup() {
   board_image = cinder::gl::Texture2d::create(loadImage(loadAsset("cave_background.jpg")));
-  plane_image = cinder::gl::Texture2d::create(loadImage(loadAsset("jet.jpg")));
+  plane_image = cinder::gl::Texture2d::create(loadImage(loadAsset("bird.jpg")));
 }
 
 void MyApp::update() {
-  if (engine_->GetBirdHeight() != 9 && !engine_->game_over) {
-    engine_->SetBirdHeight(engine_->GetBirdHeight() + 1);
-  }
+  if (!game_is_over) {
+      if (engine_->GetBirdHeight() != 9 && !engine_->game_over) {
+          engine_->SetBirdHeight(engine_->GetBirdHeight() + 1);
+      }
 
-  if (count % 3 == 0) {
-    engine_->pipe1.SetPipeRow(engine_->pipe1.GetPipeRow() - 1);
-    engine_->pipe2.SetPipeRow(engine_->pipe2.GetPipeRow() - 1);
-  }
+      if (count % 3 == 0) {
+          engine_->pipe1.SetPipeRow(engine_->pipe1.GetPipeRow() - 1);
+          engine_->pipe2.SetPipeRow(engine_->pipe2.GetPipeRow() - 1);
+      }
 
-  //Checks if the bird earns a point or if the game is over
-  if (engine_->pipe1.GetPipeRow() == 2) {
-    engine_->game_over = engine_->IsGameOver(engine_->pipe1);
-  } else if (engine_->pipe2.GetPipeRow() == 2) {
-    engine_->game_over = engine_->IsGameOver(engine_->pipe2);
-  }
+      //Checks if the bird earns a point or if the game is over
+      if (engine_->pipe1.GetPipeRow() == 2) {
+          engine_->game_over = engine_->IsGameOver(engine_->pipe1);
+          if (engine_->game_over) {
+              game_is_over = true;
+              final_game_score = engine_->GetGameScore()/3;
+              delete engine_;
+          }
+      } else if (engine_->pipe2.GetPipeRow() == 2) {
+          engine_->game_over = engine_->IsGameOver(engine_->pipe2);
+          if (engine_->game_over) {
+              game_is_over = true;
+              final_game_score = engine_->GetGameScore()/3;
+              delete engine_;
+          }
+      }
 
-  //Redraws the pipes after they go off the left side of the screen
-  if (engine_->pipe1.GetPipeRow() < 0) {
-    engine_->pipe1 = Pipe(engine_->GetBirdHeight(), 9);
-  } else if (engine_->pipe2.GetPipeRow() < 0) {
-    engine_->pipe2 = Pipe(engine_->GetBirdHeight(), 9);
+      //Redraws the pipes after they go off the left side of the screen
+      if (engine_->pipe1.GetPipeRow() < 0) {
+          engine_->pipe1 = Pipe(engine_->GetBirdHeight(), 9);
+      } else if (engine_->pipe2.GetPipeRow() < 0) {
+          engine_->pipe2 = Pipe(engine_->GetBirdHeight(), 9);
+      }
+      count++;
   }
-  count++;
 }
 
 void MyApp::draw() {
   cinder::gl::clear();
   cinder::gl::enableAlphaBlending();
   cinder::gl::draw(board_image, getWindowBounds());
-  if (engine_->game_over) {
+  if (game_is_over) {
     DrawGameOver();
     return;
   } else {
@@ -79,7 +91,7 @@ void MyApp::keyDown(KeyEvent event) {
   switch (event.getCode()) {
     case KeyEvent::KEY_SPACE:
     case KeyEvent::KEY_UP: {
-      if (!engine_->game_over) {
+    if (!game_is_over) {
         cinder::audio::SourceFileRef musicFile =
             cinder::audio::load(cinder::app::loadAsset("wing.mp3"));
         noisePlayer = cinder::audio::Voice::create(musicFile);
@@ -98,7 +110,7 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::DrawBird() const {
   //Keeps the bird always in column 2 (third row from the left)
-  cinder::gl::color(0.2, 1, 0.2);
+  cinder::gl::color(1, 1, 1);
   const Location loc = Location(2, engine_->GetBirdHeight());
   /*cinder::gl::drawSolidRect(cinder::Rectf(tile_size * loc.Row(),
                                   tile_size * loc.Col(),
@@ -111,7 +123,7 @@ void MyApp::DrawBird() const {
 }
 void MyApp::DrawPipe(Pipe pipe) const {
   //Draw first pipe
-  cinder::gl::color(1, 1, 1);
+  cinder::gl::color(0.7, 1, 0.7);
   const Location top_loc = Location(pipe.GetPipeRow(), pipe.GetTopOpen());
   if (pipe.GetTopOpen() > 0) {
     cinder::gl::drawSolidRect(cinder::Rectf(tile_size * top_loc.Row(),
@@ -154,7 +166,7 @@ void MyApp::DrawGameOver() const {
   const cinder::Color color = cinder::Color::white();
   size_t row = 0;
   std::stringstream score;
-  score << "Score: " << engine_->GetGameScore()/3;
+  score << "Score: " << final_game_score;
   PrintText(score.str(), color, size, {center.x, center.y - 100});
 }
 

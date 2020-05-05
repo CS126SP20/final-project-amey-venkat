@@ -41,6 +41,8 @@ class MyApp : public cinder::app::App {
  private:
   Engine *engine_ = new Engine();
   int count = 0;
+  bool game_is_over = false;
+  int final_game_score = 0;
 
 };
 
