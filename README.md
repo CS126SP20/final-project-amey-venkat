@@ -5,7 +5,7 @@
 
 ![](flappybird.gif)
 
-**Flight Simulator: Flappy Bird** is a parody of the popular mobile game, "Flappy Bird", and this game was made as light joke in reference to the numerous references my professor made to his work with flight simulators during lecture.
+**Flight Simulator: Flappy Bird** is a parody of the popular mobile game, "Flappy Bird", and it uses the OpenGL library (which comes included as a block of Cinder) that provides graphics capabilities. This game was made as light joke in reference to the numerous references my professor made to his work with flight simulators during lecture.
 
 ---
 
