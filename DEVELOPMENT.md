@@ -14,6 +14,8 @@
 
 **5/3/2020** - Fixed some glitches that caused game to continue despite bird hitting a pipe, and a made the "bird" a image of a plane.
 
-**5/5/2020** - Changed the frame rate so that the game would run more smoothly, and the bird falls more naturally. Depict the user's score on the game over screen.
+**5/5/2020** - Changed the frame rate so that the game would run more smoothly, and the bird falls more naturally. Depict the user's score on the game over screen. Added basic tests for some of the header files' functions.
+
+**5/6/2020** - Updated the README.md file and added the PROPOPSAL.md file to the project.
 
 ---
