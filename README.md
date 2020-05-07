@@ -21,6 +21,6 @@ For further reference, [here](https://courses.grainger.illinois.edu/cs126/sp2020
 
 ## Additional Notes
 
-This project utilized the library, *OpenGL* for its simple graphics and audio capabilities. Both the background and the "bird" icon itself where implemented using functions from this library and this project overall shows how helpful this library was in drawing pictures and playing sounds for the game.
+This project utilized the library, *OpenGL* for its simple graphics and audio capabilities. Both the background and the "bird" icon itself where implemented using functions from this library and this project overall shows how helpful this library was in drawing pictures and playing sounds for the game. [Here](https://libcinder.org/docs/guides/opengl/index.html) is a link for additional reference to the library.
 
 **Author**: Amey Venkatanarayan - [`ameyv2@illinois.edu`](mailto:example@illinois.edu)
