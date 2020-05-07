@@ -11,7 +11,7 @@
 
 ## Setting Up The Game
 
-As mentioned before, this game utilizes the *Cinder* framework, and you can download the latest version for your platform [here](https://libcinder.org/download). Furthermore, you must have CLion in order to compile this program otherwise linking the Cinder framework will not be as straightforward.
+As mentioned before, this game utilizes the *Cinder* framework, and you can download the latest version for your platform [here](https://libcinder.org/download). Furthermore, you must have CLion in order to compile this program otherwise linking the Cinder framework will not be as straightforward. [Here](https://www.jetbrains.com/clion/download/#section=mac) is a link to download CLion for your respective platform.
 
 After downloading *Cinder* (v0.9.2 is the current latest version), extract it into a folder called `~/Cinder`. From here open `~/Cinder` in CLion and build it once to create `libcinder`. Then create a new directory in `~/Cinder` which can be named `flappy-bird` and clone this repository to that location. Finally, open `flight-simulatory-flappybird` in CLion, set the target to cinder-myapp and run the program.
 
