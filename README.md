@@ -17,4 +17,10 @@ After downloading *Cinder* (v0.9.2 is the current latest version), extract it in
 
 For further reference, [here](https://courses.grainger.illinois.edu/cs126/sp2020/assignments/snake/) and [here](https://libcinder.org/docs/guides/tour/hello_cinder_chapter1.html) are basic tutorials on setting up *Cinder* in CLion.
 
+---
+
+## Additional Notes
+
+This project utilized the library, *OpenGL* for its simple graphics and audio capabilities. Both the background and the "bird" icon itself where implemented using functions from this library and this project overall shows how helpful this library was in drawing pictures and playing sounds for the game.
+
 **Author**: Amey Venkatanarayan - [`ameyv2@illinois.edu`](mailto:example@illinois.edu)
