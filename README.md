@@ -9,6 +9,6 @@
 
 ---
 
-# Getting Started
+## Getting Started
 
 **Author**: Amey Venkatanarayan - [`ameyv2@illinois.edu`](mailto:example@illinois.edu)
