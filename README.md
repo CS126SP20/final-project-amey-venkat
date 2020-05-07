@@ -13,6 +13,6 @@
 
 As mentioned before, this game utilizes the *Cinder* framework, and you can download the latest version for your platform [here](https://libcinder.org/download).
 
-After downloading *Cinder* (v0.9.2 is the current latest version), extract it into a folder called '~/Cinder'.
+After downloading *Cinder* (v0.9.2 is the current latest version), extract it into a folder called `~/Cinder`.
 
 **Author**: Amey Venkatanarayan - [`ameyv2@illinois.edu`](mailto:example@illinois.edu)
